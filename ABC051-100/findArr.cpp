@@ -1,11 +1,10 @@
 #include <iostream>
+#include <climits>
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <sstream>
 #include <queue>
 #include <deque>
-#include <bitset>
 #include <iterator>
 #include <list>
 #include <stack>
@@ -14,7 +13,6 @@
 #include <functional>
 #include <numeric>
 #include <utility>
-#include <limits>
 #include <time.h>
 #include <math.h>
 #include <stdio.h>
@@ -24,22 +22,35 @@
  
 using namespace std;
 
-int main(){
-	
-	int a, b;
-	cin>>a>>b;
 
-	int sockets = 1;
 
-	int count = 0;
-
-	while(sockets<b){
-		sockets = sockets + a - 1;
-		count++;
+int solve(int n){
+	if(n == 1){
+		return 1;
 	}
 
-	cout<<count;
+	if( n < 5){
+		return 2;
+	}
 
-	return 0;
+	int sum = 4, maxV = 3, count = 2;
+
+	while(sum < n){
+		maxV+=2;
+		sum+=maxV;
+		count++;
+	} 
+
+	return count;
 }
 
+
+int main(){
+	int T;
+	cin>>T;
+	while(T-- >0){
+		int n;
+		cin>>n;
+		cout<<solve(n)<<endl;
+	}
+}
